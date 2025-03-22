@@ -6,16 +6,38 @@
     <title>Neos Education</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
+body {
             background-color: #d9e7fa;
             color: #37545d;
         }
         .navbar {
             background-color: #15aad8 !important;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        body {
+            padding-top: 56px;
         }
         .card {
-            background-color:rgb(179, 228, 255);
+            background-color: rgb(179, 228, 255);
             border: none;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 15px;
+        }
+        .card:hover img {
+            transform: scale(1.1);
         }
         .btn-custom {
             background-color: #0c77bf;
@@ -23,9 +45,6 @@
         }
         .btn-custom:hover {
             background-color: #005a8e;
-        }
-        .select{
-            color: white;
         }
     </style>
 </head>
@@ -56,30 +75,42 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="card p-3">
-                    <h4>Cadastro de Alunos</h4>
-                    <p>Gerencie os alunos cadastrados na escola.</p>
-                    <a class="btn btn-custom" href="Aluno.html">Acessar</a>
+                    <a href="Aluno.html" class="text-decoration-none text-dark">
+                        <img src="assets/img/study.jpg" alt="Cadastro de Alunos">
+                        <h4>Cadastro de Alunos</h4>
+                        <p>Gerencie os alunos cadastrados na escola.</p>
+                        <button class="btn btn-custom">Acessar</button>
+                    </a>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="card p-3">
-                    <h4>Cadastro de Professores</h4>
-                    <p>Gerencie os professores da escola.</p>
-                    <a class="btn btn-custom" href="Professor.html">Acessar</a>
+                    <a href="Professor.html" class="text-decoration-none text-dark">
+                        <img src="assets/img/teach.jpg" alt="Cadastro de Professores">
+                        <h4>Cadastro de Professores</h4>
+                        <p>Gerencie os professores da escola.</p>
+                        <button class="btn btn-custom">Acessar</button>
+                    </a>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="card p-3">
-                    <h4>Cadastro de Disciplinas</h4>
-                    <p>Gerencie as disciplinas oferecidas pela escola.</p>
-                    <a class="btn btn-custom" href="Disciplina.html">Acessar</a>
+                    <a href="Disciplina.html" class="text-decoration-none text-dark">
+                        <img src="assets/img/disciplina.jpg" alt="Cadastro de Disciplinas">
+                        <h4>Cadastro de Disciplinas</h4>
+                        <p>Gerencie as disciplinas oferecidas pela escola.</p>
+                        <button class="btn btn-custom">Acessar</button>
+                    </a>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="card p-3">
-                    <h4>Cadastro de Turmas</h4>
-                    <p>Gerencie as turmas da escola.</p>
-                    <a class="btn btn-custom" href="turmas.html">Acessar</a>
+                    <a href="turmas.html" class="text-decoration-none text-dark">
+                        <img src="assets/img/turma.jpg" alt="Cadastro de Turmas">
+                        <h4>Cadastro de Turmas</h4>
+                        <p>Gerencie as turmas da escola.</p>
+                        <button class="btn btn-custom">Acessar</button>
+                    </a>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
