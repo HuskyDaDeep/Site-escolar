@@ -58,7 +58,7 @@
             <form>
                 <div class="Warn mb-3">
                     <label for="nome" class="form-label">Nome Completo</label>
-                    <input type="text" class="form-control" id="nome" required>
+                    <input type="text" class="form-control" id="nome" required placeholder="Digite seu nome Completo">
                 </div>
                 <div class="Warn mb-3">
                     <label for="dataNascimento" class="form-label">Data de Nascimento</label>
@@ -66,21 +66,38 @@
                 </div>
                 <div class="Warn mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" required>
+                    <input type="text" class="form-control" id="cpf" required placeholder="XXX.XXX.XXX-XX">
                 </div>
                 <div class="Warn mb-3">
                     <label for="endereco" class="form-label">Endereço</label>
-                    <input type="text" class="form-control" id="endereco" required>
+                    <input type="text" class="form-control" id="endereco" required placeholder="Exemplo: Rua A, 123">
+                </div>
+                <div class="Warn mb-3">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" required placeholder="Digite seu bairro">
+                </div>
+                <div class="Warn mb-3">
+                    <label for="cidade" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="cidade" required placeholder="Ex: Minas Gerais">
+                </div>
+                <div class="Warn mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="estado" required placeholder="Ex: MG">
+                </div>
+                <div class="Warn mb-3">
+                    <label for="cep" class="form-label">CEP</label>
+                    <input type="text" class="form-control" id="cep" required placeholder="Exemplo: 12345-678">
                 </div>
                 <div class="Warn mb-3">
                     <label for="telefone" class="form-label">Telefone</label>
-                    <input type="tel" class="form-control" id="telefone" required>
+                    <input type="tel" class="form-control" id="telefone" required placeholder="(XX) XXXXX-XXXX">
                 </div>
                 <div class="Warn mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" required>
+                    <input type="email" class="form-control" id="email" required placeholder="exemplo@email.com">
                 </div>
                 <button type="submit" id="button" class="btn btn-custom">Cadastrar</button>
+                <button type="reset" class="btn btn-secondary ms-2">Limpar</button>
             </form>
         </div>
     </div>
