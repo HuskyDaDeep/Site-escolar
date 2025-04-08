@@ -3,86 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neos Education Cadastro Turmas</title>
+    <title>Cadastro de Disciplinas </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #d9e7fa;
-            color: #37545d;
-        }
-        .navbar {
-            background-color: #15aad8 !important;
-        }
-        .card {
-            background-color:rgb(179, 228, 255);
-            border: none;
-        }
-        .btn-custom {
-            background-color: #0c77bf;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #005a8e;
-        }
-        .select{
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+   
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Neos Education</a>
+        <div class="container_nav">
+            <a class="navbar-brand" href="#">Neos Education</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+                <span class="menu-toggle">☰</span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="Aluno.html">Alunos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Alunos.html">Alunos</a></li>
                     <li class="nav-item"><a class="nav-link" href="Professor.html">Professores</a></li>
                     <li class="nav-item"><a class="nav-link" href="Disciplina.html">Disciplinas</a></li>
-                    <li class="nav-item"><a class="nav-link select" href="turmas.html">Turmas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="turmas.html">Turmas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="container">
+        <h2 class="text-center mb-4">Cadastro de Turmas</h2>
+        <p class="text-center">Preencha os campos abaixo para cadastrar uma nova turma.</p>
+        <form class="row g-3 needs-validation" novalidate id="formTurma">
+            <div class="col-md-6">
+                <label for="nomeTurma" class="form-label">Nome da Turma</label>
+                <input type="text" class="form-control" id="nomeTurma" placeholder="Ex.: Turma A" required>
+                <div class="invalid-feedback">Informe o nome da turma.</div>
+            </div>
     
-    <div class="container mt-4">
-        <h1 class="text-center">Bem-vindo ao Sistema de Gestão Escolar</h1>
-        <p class="text-center">Utilize o menu acima para navegar entre os módulos de cadastro.</p>
+            <div class="col-md-6">
+                <label for="anoLetivo" class="form-label">Ano Letivo</label>
+                <input type="number" class="form-control" id="anoLetivo" placeholder="Ex.: 2025" required>
+                <div class="invalid-feedback">Informe o ano letivo.</div>
+            </div>
+    
+            <div class="col-md-12">
+                <label for="alunosMatriculados" class="form-label">Alunos Matriculados</label>
+                <select multiple class="form-select" id="alunosMatriculados" required>
+                    <!-- Simulação de alunos cadastrados -->
+                    <option value="1">João Silva</option>
+                    <option value="2">Maria Oliveira</option>
+                    <option value="3">Lucas Pereira</option>
+                    <option value="4">Ana Santos</option>
+                </select>
+                <div class="invalid-feedback">Selecione pelo menos um aluno.</div>
+            </div>
+    
+            <div class="col-md-6">
+                <label for="professorTurma" class="form-label">Professor Responsável</label>
+                <select class="form-select" id="professorTurma" required>
+                    <option value="">Selecione um professor</option>
+                    <!-- Simulação de professores já cadastrados -->
+                    <option value="1">Ana Souza</option>
+                    <option value="2">Carlos Oliveira</option>
+                    <option value="3">Fernanda Lima</option>
+                </select>
+                <div class="invalid-feedback">Selecione um professor responsável.</div>
+            </div>
+    
+            <div class="col-md-6">
+                <label for="disciplinaTurma" class="form-label">Disciplina Associada</label>
+                <select class="form-select" id="disciplinaTurma" required>
+                    <option value="">Selecione uma disciplina</option>
+                    <!-- Simulação de disciplinas cadastradas -->
+                    <option value="MAT001">Matemática</option>
+                    <option value="POR002">Português</option>
+                    <option value="HIS003">História</option>
+                </select>
+                <div class="invalid-feedback">Selecione uma disciplina.</div>
+            </div>
+    
+            <div class="col-12 text-center">
+                <button class="btn btn-primary" type="submit">Cadastrar Turma</button>
+            </div>
+        </form>
+    
+        <hr class="my-5">
+    
+        <h3 class="mb-3">Lista de Turmas</h3>
+        <input type="text" class="form-control mb-3" id="buscaTurma" placeholder="Buscar por nome ou ano..." oninput="filtrarTurmas()">
+    
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Ano</th>
+                    <th>Alunos</th>
+                    <th>Professor</th>
+                    <th>Disciplina</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="listaTurmas">
+                <!-- Turmas cadastradas serão exibidas aqui -->
+            </tbody>
+        </table>
     </div>
     
-    <div class="container mt-4" id="formularioAluno" style="display: block;">
-        <div class="card p-4">
-            <h3>Cadastro de Turmas</h3>
-            <form>
-                <div class="Warn mb-3">
-                    <label for="nome" class="form-label">Código da Turma</label>
-                    <input type="text" class="form-control" id="turma" required>
-                </div>
-                <div class="Warn mb-3">
-                    <label for="nome" class="form-label">Diciplina</label>
-                    <input type="text" class="form-control" id="diciplina" required>
-                </div>
-                <div class="Warn mb-3">
-                    <label for="dataNascimento" class="form-label">Professor responsavel</label>
-                    <input type="text" class="form-control" id="professor" required>
-                </div>
-                <div class="Warn mb-3">
-                    <label for="dataNascimento" class="form-label">Horario</label>
-                    <input type="text" class="form-control" id="horario" required>
-                </div>
-                <div class="Warn mb-3">
-                    <label for="dataNascimento" class="form-label">Aluno</label>
-                    <input type="text" class="form-control" id="Professorresponsavel" required>
-                </div>
-
-                    <button type="submit" id="button" class="btn btn-custom">Cadastrar</button>
-                
-            </form>
-        </div>
-    </div>
-    <script src="assets/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <script>
+        const turmas = [];
+    
+        function atualizarTabelaTurmas() {
+            const tbody = document.getElementById('listaTurmas');
+            tbody.innerHTML = '';
+            turmas.forEach((t, i) => {
+                const row = `<tr>
+                    <td>${t.nome}</td>
+                    <td>${t.ano}</td>
+                    <td>${t.alunos.join(', ')}</td>
+                    <td>${t.professor}</td>
+                    <td>${t.disciplina}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-1" onclick="editarTurma(${i})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirTurma(${i})">Excluir</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    
+        function filtrarTurmas() {
+            const busca = document.getElementById('buscaTurma').value.toLowerCase();
+            const linhas = document.querySelectorAll('#listaTurmas tr');
+            linhas.forEach(linha => {
+                const texto = linha.textContent.toLowerCase();
+                linha.style.display = texto.includes(busca) ? '' : 'none';
+            });
+        }
+    
+        function editarTurma(index) {
+            const t = turmas[index];
+            document.getElementById('nomeTurma').value = t.nome;
+            document.getElementById('anoLetivo').value = t.ano;
+            document.getElementById('professorTurma').value = t.idProfessor;
+            document.getElementById('disciplinaTurma').value = t.codigoDisciplina;
+            turmas.splice(index, 1);
+            atualizarTabelaTurmas();
+        }
+    
+        function excluirTurma(index) {
+            turmas.splice(index, 1);
+            atualizarTabelaTurmas();
+        }
+    
+        document.getElementById('formTurma').addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!this.checkValidity()) {
+                this.classList.add('was-validated');
+                return;
+            }
+    
+            const nome = document.getElementById('nomeTurma').value;
+            const ano = document.getElementById('anoLetivo').value;
+            const alunosSelecionados = Array.from(document.getElementById('alunosMatriculados').selectedOptions).map(opt => opt.text);
+            const idProfessor = document.getElementById('professorTurma').value;
+            const nomeProfessor = document.getElementById('professorTurma').selectedOptions[0].text;
+            const codigoDisciplina = document.getElementById('disciplinaTurma').value;
+            const nomeDisciplina = document.getElementById('disciplinaTurma').selectedOptions[0].text;
+    
+            if (turmas.some(t => t.nome === nome && t.ano === ano)) {
+                alert('Já existe uma turma com esse nome para o mesmo ano letivo.');
+                return;
+            }
+    
+            turmas.push({
+                nome,
+                ano,
+                alunos: alunosSelecionados,
+                idProfessor,
+                professor: nomeProfessor,
+                codigoDisciplina,
+                disciplina: nomeDisciplina
+            });
+    
+            this.reset();
+            this.classList.remove('was-validated');
+            atualizarTabelaTurmas();
+        });
+    </script>
+    </body>
+    </html>

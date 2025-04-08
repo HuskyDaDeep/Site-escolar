@@ -3,82 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neos Education Cadastro Diciplina</title>
+    <title>Cadastro de Disciplinas </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #d9e7fa;
-            color: #37545d;
-        }
-        .navbar {
-            background-color: #15aad8 !important;
-        }
-        .card {
-            background-color:rgb(179, 228, 255);
-            border: none;
-        }
-        .btn-custom {
-            background-color: #0c77bf;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #005a8e;
-        }
-        .select{
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+   
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Neos Education</a>
+        <div class="container_nav">
+            <a class="navbar-brand" href="#">Neos Education</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+                <span class="menu-toggle">☰</span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link " href="Aluno.html">Alunos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Alunos.html">Alunos</a></li>
                     <li class="nav-item"><a class="nav-link" href="Professor.html">Professores</a></li>
-                    <li class="nav-item"><a class="nav-link select" href="Disciplina.html">Disciplinas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Diciplina.html">Disciplinas</a></li>
                     <li class="nav-item"><a class="nav-link" href="turmas.html">Turmas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
-    <div class="container mt-4">
-        <h1 class="text-center">Bem-vindo ao Sistema de Gestão Escolar</h1>
-        <p class="text-center">Utilize o menu acima para navegar entre os módulos de cadastro.</p>
-    </div>
-    
-    <div class="container mt-4" id="formularioAluno" style="display: block;">
-        <div class="card p-4">
-            <h3>Cadastro de Disciplinas</h3>
-            <form>
-                <div class="Warn mb-3">
-                    <label for="nome" class="form-label">Nome da Disciplina</label>
-                    <input type="text" class="form-control" id="nome" required>
-                </div>
-                <div class="Warn mb-3">
-                    <label for="dataNascimento" class="form-label">Código da Disciplina</label>
-                    <input type="text" class="form-control" id="codigodisciplina" required>
-                </div>
-                <div class="Warn mb-3">
-                    <label for="dataNascimento" class="form-label">Carga Horária Total</label>
-                    <input type="text" class="form-control" id="cargahoraria" required>
-                </div>
-                <div class="Warn mb-3">
-                    <label for="dataNascimento" class="form-label">Professor responsavel</label>
-                    <input type="text" class="form-control" id="Professorresponsavel" required>
-                </div>
-
-                    <button type="submit" id="button" class="btn btn-custom">Cadastrar</button>
-                
-            </form>
+<div class="container">
+    <h2 class="text-center mb-4">Cadastro de Disciplinas</h2>
+    <p class="text-center">Preencha os campos abaixo para cadastrar uma nova diciplina.</p>
+    <form class="row g-3 needs-validation" novalidate id="formDisciplina">
+        <div class="col-md-6">
+            <label for="nomeDisciplina" class="form-label">Nome da Disciplina</label>
+            <input type="text" class="form-control" id="nomeDisciplina" placeholder="Ex.: Matemática" required>
+            <div class="invalid-feedback">Informe o nome da disciplina.</div>
         </div>
-    </div>
-    <script src="assets/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <div class="col-md-6">
+            <label for="codigoDisciplina" class="form-label">Código da Disciplina</label>
+            <input type="text" class="form-control" id="codigoDisciplina" placeholder="Ex.: MAT001" pattern="[A-Z]{3}\d{3}" required>
+            <div class="invalid-feedback">Informe um código válido (ex: MAT001).</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="cargaHoraria" class="form-label">Carga Horária Total</label>
+            <input type="number" class="form-control" id="cargaHoraria" placeholder="Ex.: 60" min="1" required>
+            <div class="invalid-feedback">Informe a carga horária total.</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="professorResponsavel" class="form-label">Professor Responsável</label>
+            <select class="form-select" id="professorResponsavel" required>
+                <option value="">Selecione um professor</option>
+                <!-- Simulação de professores já cadastrados no Módulo 2 -->
+                <option value="1">Ana Souza</option>
+                <option value="2">Carlos Oliveira</option>
+                <option value="3">Fernanda Lima</option>
+            </select>
+            <div class="invalid-feedback">Selecione um professor responsável.</div>
+        </div>
+
+        <div class="col-12 text-center">
+            <button class="btn btn-success" type="submit">Cadastrar Disciplina</button>
+        </div>
+    </form>
+
+    <hr class="my-5">
+
+    <h3 class="mb-3">Lista de Disciplinas</h3>
+    <input type="text" class="form-control mb-3" id="buscaDisciplina" placeholder="Buscar por nome ou código..." oninput="filtrarDisciplinas()">
+
+    <table class="table table-bordered table-striped" id="tabelaDisciplinas">
+        <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Carga Horária</th>
+            <th>Professor</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="listaDisciplinas">
+            <!-- As disciplinas serão listadas aqui dinamicamente -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const disciplinas = [];
+
+    function atualizarTabela() {
+        const tbody = document.getElementById('listaDisciplinas');
+        tbody.innerHTML = '';
+        disciplinas.forEach((d, i) => {
+            const row = `<tr>
+                <td>${d.nome}</td>
+                <td>${d.codigo}</td>
+                <td>${d.carga}h</td>
+                <td>${d.professor}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm me-1" onclick="editarDisciplina(${i})">Editar</button>
+                    <button class="btn btn-danger btn-sm" onclick="excluirDisciplina(${i})">Excluir</button>
+                </td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function filtrarDisciplinas() {
+        const busca = document.getElementById('buscaDisciplina').value.toLowerCase();
+        const linhas = document.querySelectorAll('#listaDisciplinas tr');
+        linhas.forEach(linha => {
+            const texto = linha.textContent.toLowerCase();
+            linha.style.display = texto.includes(busca) ? '' : 'none';
+        });
+    }
+
+    function editarDisciplina(index) {
+        const d = disciplinas[index];
+        document.getElementById('nomeDisciplina').value = d.nome;
+        document.getElementById('codigoDisciplina').value = d.codigo;
+        document.getElementById('cargaHoraria').value = d.carga;
+        document.getElementById('professorResponsavel').value = d.idProf;
+        disciplinas.splice(index, 1);
+        atualizarTabela();
+    }
+
+    function excluirDisciplina(index) {
+        disciplinas.splice(index, 1);
+        atualizarTabela();
+    }
+
+    document.getElementById('formDisciplina').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!this.checkValidity()) {
+            this.classList.add('was-validated');
+            return;
+        }
+
+        const codigo = document.getElementById('codigoDisciplina').value;
+        if (disciplinas.some(d => d.codigo === codigo)) {
+            alert('Já existe uma disciplina com esse código.');
+            return;
+        }
+
+        const nome = document.getElementById('nomeDisciplina').value;
+        const carga = parseInt(document.getElementById('cargaHoraria').value);
+        const idProf = document.getElementById('professorResponsavel').value;
+        const nomeProf = document.getElementById('professorResponsavel').selectedOptions[0].text;
+
+        disciplinas.push({ nome, codigo, carga, idProf, professor: nomeProf });
+        this.reset();
+        this.classList.remove('was-validated');
+        atualizarTabela();
+    });
+    
+    
+</script>
 </body>
 </html>

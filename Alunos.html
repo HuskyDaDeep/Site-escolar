@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Professores </title>
+    <title>Cadastro de Aluno</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <script src="/script.js"></script>
-
+    <script>
+        let matriculaAtual = 0;
+        
+        function gerarMatricula() {
+            document.getElementById('matricula').value = 'MAT' + matriculaAtual;
+            matriculaAtual++;
+        }
+    </script>
 </head>
-<body onload="carregarDisciplinas()">  
+<body onload="gerarMatricula()">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container_nav">
             <a class="navbar-brand" href="#">Neos Education</a>
@@ -27,8 +33,8 @@
         </div>
     </nav>
 <div class="container mt-5">
-        <h2 class="text-center">Cadastro de Professor</h2>
-        <p class="text-center">Preencha os campos abaixo para cadastrar um novo professor.</p>
+        <h2 class="text-center">Cadastro de Aluno</h2>
+        <p class="text-center">Preencha os campos abaixo para cadastrar um novo aluno.</p>
         <form class="row g-3 needs-validation" novalidate>
             <div class="col-md-6">
                 <label for="nome" class="form-label">Nome</label>
@@ -39,12 +45,12 @@
             <div class="col-md-6">
                 <label for="data_nascimento" class="form-label">Data de Nascimento</label>
                 <input type="date" class="form-control" id="data_nascimento" required oninput="validarDataNascimento()">
-                <div class="invalid-feedback">O professor deve ter pelo menos 18 anos de idade.</div>
+                <div class="invalid-feedback">O aluno deve ter pelo menos 10 anos de idade.</div>
             </div>
             
             <div class="col-md-6">
                 <label for="cpf" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="cpf" placeholder="123.456.789-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required oninput="validarCPF()">
+                <input type="text" class="form-control" id="cpf" placeholder="XXX.XXX.XXX-XX" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required oninput="validarCPF()">
                 <div class="invalid-feedback">Por favor, insira um CPF válido.</div>
             </div>
             
@@ -65,33 +71,24 @@
                 <input type="text" class="form-control" id="endereco" placeholder="R. Espirito Santo,900-BH" required>
                 <div class="invalid-feedback">Por favor, insira um endereço válido.</div>
             </div>
+            
             <div class="col-md-6">
-                <label for="disciplina" class="form-label">Disciplinas</label>
-                <select class="form-select" id="disciplina" multiple required>
-                </select>
-                <div class="form-text">Segure Ctrl (ou Cmd no Mac) para selecionar até 3 disciplinas.</div>
-                <div class="invalid-feedback">Por favor, selecione até 3 disciplinas.</div>
+                <label for="matricula" class="form-label">Número de Matrícula</label>
+                <input type="text" class="form-control" id="matricula" readonly>
             </div>
             
             <div class="col-12 text-center">
                 <button class="btn btn-primary" type="submit">Cadastrar</button>
             </div>
         </form>
-    </div>
+ </div>
     <script>
-       (function () {
+        (function () {
             'use strict'
             var forms = document.querySelectorAll('.needs-validation')
             Array.prototype.slice.call(forms)
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
-                        let select = document.getElementById('disciplina');
-                        if (select.selectedOptions.length === 0 || select.selectedOptions.length > 3) {
-                            select.setCustomValidity('Selecione no máximo 3 disciplinas.');
-                        } else {
-                            select.setCustomValidity('');
-                        }
-
                         if (!form.checkValidity()) {
                             event.preventDefault()
                             event.stopPropagation()
